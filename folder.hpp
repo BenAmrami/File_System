@@ -18,8 +18,8 @@ class Folder : public FileSystemEntity {
     Folder(std::string name);
 
     FileSystemEntity& SearchEntity(std::string entity_name);
-    bool addFile(File file);
-    bool removeFile(File &file);
+    bool addFile(FileSystemEntity entity);
+    bool removeFile(FileSystemEntity &entity);
 
     friend class Commands;
 };

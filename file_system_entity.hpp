@@ -9,4 +9,7 @@ class FileSystemEntity {
   public:
     FileSystemEntity(std::string name/*" = ERROR"*/ );
     virtual ~FileSystemEntity() = default;
+
+    std::string getName();
+    void rename(std::string file_name);
 };

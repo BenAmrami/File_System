@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
+#include <memory>
 #include "folder.hpp"
 #include "file.hpp"
 
@@ -14,11 +14,11 @@ FileSystemEntity& Folder::SearchEntity(std::string name){
   return (files.find(name) != files.end()) ? files.at(name) : *this ;
 }
 
-bool Folder::addFile(File file){
-  //if file doesn't exist
-  if (this->files.find(file.getName()) == this->files.end()){
+bool Folder::addFile(FileSystemEntity entity){
+  //if entity doesn't exist
+  if (this->files.find(entity.getName()) == this->files.end()){
 
-    this->files.insert({file.getName(),file});
+    this->files.insert({entity.getName(),entity});
     return 1;
   }
 
@@ -26,11 +26,11 @@ bool Folder::addFile(File file){
   return 0;
 }
 
-bool Folder::removeFile(File &file){
-  //if file doesn't exist
-  if (this->files.find(file.getName()) != this->files.end()){
+bool Folder::removeFile(FileSystemEntity &entity){
+  //if entity doesn't exist
+  if (this->files.find(entity.getName()) != this->files.end()){
 
-    this->files.erase(file.getName());
+    this->files.erase(entity.getName());
     return 1;
   }
 

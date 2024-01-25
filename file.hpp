@@ -14,8 +14,6 @@ class File : public FileSystemEntity {
 
     File(std::string name, std::string extention = "");
 
-    std::string getName();
-    void rename(std::string file_name);
 
     friend class Commands;
 
