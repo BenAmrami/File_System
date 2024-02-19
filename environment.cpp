@@ -8,11 +8,12 @@
 
 std::map<std::string, std::shared_ptr<FileSystemEntity>> Environment::paths = { {"/", std::make_shared<Folder>("/")}};
 std::string Environment::current_path = "/";
-Folder* Environment::p_current_folder = dynamic_cast<Folder*>(/*&*/Environment::paths.at("/").get());
+// Folder* Environment::p_current_folder = dynamic_cast<Folder*>(/*&*/Environment::paths.at("/").get());
+std::shared_ptr<Folder> Environment::p_current_folder = std::static_pointer_cast<Folder>(Environment::paths.at("/"));
 
 std::string Environment::active_path = "/";
-Folder* Environment::p_active_folder = dynamic_cast<Folder*>(/*&*/Environment::paths.at("/").get());
-
+// Folder* Environment::p_active_folder = dynamic_cast<Folder*>(/*&*/Environment::paths.at("/").get());
+std::shared_ptr<Folder> Environment::p_active_folder = std::static_pointer_cast<Folder>(Environment::paths.at("/"));
 
 void Environment::resetActiveFolder(){
   Environment::p_active_folder = Environment::p_current_folder; 

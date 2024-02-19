@@ -13,9 +13,12 @@ class Environment{
     // static std::map<std::string, FileSystemEntity> paths;
     static std::map<std::string, std::shared_ptr<FileSystemEntity>> paths;
     static std::string current_path;
-    static Folder* p_current_folder;
+    // static Folder* p_current_folder;
+    static std::shared_ptr<Folder> p_current_folder;
     static std::string active_path;
-    static Folder* p_active_folder;
+    // static Folder* p_active_folder;
+    static std::shared_ptr<Folder> p_active_folder;
+
     
     static void resetActiveFolder();
     static void changeDirectory();

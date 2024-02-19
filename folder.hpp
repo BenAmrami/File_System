@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <map>
+#include <memory>
 
 #include "file.hpp"
 #include "file_system_entity.hpp"
@@ -10,16 +11,16 @@
 class Folder : public FileSystemEntity {
   private:
   std::string name;
-  std::map<std::string, FileSystemEntity> files;
+  std::map<std::string, std::shared_ptr<FileSystemEntity>> files;
   
   
   public:
 
     Folder(std::string name);
 
-    FileSystemEntity& SearchEntity(std::string entity_name);
-    bool addFile(FileSystemEntity entity);
-    bool removeFile(FileSystemEntity &entity);
+    std::shared_ptr<FileSystemEntity> SearchEntity(std::string entity_name);
+    bool addFile(std::shared_ptr<FileSystemEntity> entity);
+    bool removeFile(std::shared_ptr<FileSystemEntity> entity);
 
     friend class Commands;
 };

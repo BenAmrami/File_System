@@ -7,18 +7,20 @@
 
 
 Folder::Folder(std::string name)
-: FileSystemEntity(name)/*, files({{".."},{NEED TO COMPLETE THIS}}) */ {}
-
-
-FileSystemEntity& Folder::SearchEntity(std::string name){
-  return (files.find(name) != files.end()) ? files.at(name) : *this ;
+: FileSystemEntity(name) {
+  files.insert({{"."}, {std::shared_ptr<Folder>(this)}});
 }
 
-bool Folder::addFile(FileSystemEntity entity){
-  //if entity doesn't exist
-  if (this->files.find(entity.getName()) == this->files.end()){
 
-    this->files.insert({entity.getName(),entity});
+std::shared_ptr<FileSystemEntity> Folder::SearchEntity(std::string name){
+  return (files.find(name) != files.end()) ? files.at(name) : files.at(".") ;
+}
+
+bool Folder::addFile(std::shared_ptr<FileSystemEntity> entity){
+  //if entity doesn't exist
+  if (this->files.find(entity->getName()) == this->files.end()){
+
+    this->files.insert({entity->getName(),entity});
     return 1;
   }
 
@@ -26,11 +28,11 @@ bool Folder::addFile(FileSystemEntity entity){
   return 0;
 }
 
-bool Folder::removeFile(FileSystemEntity &entity){
+bool Folder::removeFile(std::shared_ptr<FileSystemEntity> entity){
   //if entity doesn't exist
-  if (this->files.find(entity.getName()) != this->files.end()){
+  if (this->files.find(entity->getName()) != this->files.end()){
 
-    this->files.erase(entity.getName());
+    this->files.erase(entity->getName());
     return 1;
   }
 
