@@ -21,6 +21,8 @@ class Folder : public FileSystemEntity {
     std::shared_ptr<FileSystemEntity> SearchEntity(std::string entity_name);
     bool addFile(std::shared_ptr<FileSystemEntity> entity);
     bool removeFile(std::shared_ptr<FileSystemEntity> entity);
-
-    friend class Commands;
+    // std::vector<std::string> displayFiles();
+    
+    friend class commands;
+    friend std::string ls(std::vector<std::string> params, std::vector<std::string> input);
 };

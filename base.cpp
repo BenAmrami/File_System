@@ -8,15 +8,15 @@
 
 int main(){
   
-  
-  
-  std::vector<std::string> vec;
+  std::string input;
+  do {
+    std::cout << ">>";
+    //user input
+    std::getline(std::cin, input);
 
-  mkdir(vec, {"Benchuk!", "Benchuk!/cool"});
-  cd(vec, "Benchuk!");
-  
+    parse(input);
 
-
+  } while (input != "exit");
 
   return 0;
 
